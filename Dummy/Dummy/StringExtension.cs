@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Dummy
 {
-    internal class StringExtension
+    public static class StringExtension
     {
+        public static string FirstLetter(this string s)
+        {
+            return s == "" ? "":s.Substring(0,1);
+        }
     }
 }
