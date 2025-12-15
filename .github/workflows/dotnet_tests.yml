@@ -11,19 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET 9.x
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
+      - name: Setup .NET 8 (LTS)
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore TestProject1/TestProject1.csproj
 
-    - name: Build
-      run: dotnet build --no-restore
+      - name: Build
+        run: dotnet build TestProject1/TestProject1.csproj --no-restore --configuration Release
 
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Run tests
+        run: dotnet test TestProject1/TestProject1.csproj --no-build --configuration Release --verbosity normal
